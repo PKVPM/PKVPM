@@ -1,14 +1,21 @@
-# setup.py
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+# RUN Command Line:
+# 1.Build-check dist folder
+# python setup.py sdist bdist_wheel
+# 2.Upload to PyPi
+# twine upload dist/*
+
 from setuptools import setup, find_packages
 
 setup(
     name='pkvpm',
-    version='0.1.0',
+    version='1.0.0',
     author='PKVPM Organization',
     author_email='PKVPM@PKVPM.ORG',
     packages=find_packages(),
     install_requires=[
-        # List of project dependencies
+        'PyYAML'
     ],
     description='A package for Polymorphic Key-Value Path Mapping (PKVPM)',
     long_description=open('README.md').read(),

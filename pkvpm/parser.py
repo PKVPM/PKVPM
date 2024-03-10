@@ -7,9 +7,9 @@ from typing import Dict, Union
 class Parser:
 
     def __init__(self):
-        # 初始化数据
+        # 初始化数据/Initialize data
         self.data = {}
-        # 类型转换器
+        # 类型转换器/Type converter
         self.type_converters = {
             "list": self.translate_list,
             "bool": lambda x: x.lower() == "true",
@@ -20,15 +20,16 @@ class Parser:
 
     def linear_format_generator(self, kv_data, prefix=""):
         """
-        将键值数据转换为线性格式的键值对列表
-        :param kv_data: 键值对数据
-        :param prefix: 键的前缀
-        :return: 线性格式的键值对列表
+        将键值数据转换为线性格式的键值对列表/Convert key-value data to a linear format list of key-value pairs
+        :param kv_data: 键值对数据/Key-value pair data
+        :param prefix: 键的前缀/Prefix of the key
+        :return: 线性格式的键值对列表/Linear format list of key-value pairs
         """
         if isinstance(kv_data, dict):
             for key, value in kv_data.items():
                 if isinstance(value, list):
                     # 如果值是列表，则将其转换为逗号分隔的字符串，并记录每个值的类型
+                    # If the value is a list, convert it to a comma-separated string and record the type of each value
                     value_with_types = ", ".join(
                         f"{item}|[{type(item).__name__}]" for item in value
                     )
@@ -47,21 +48,23 @@ class Parser:
 
     def parse(self, content: Union[str, Dict]) -> str:
         """
-        将输入数据转换为多态键值路径映射格式
-        :param content: 输入数据(字符串或字典)
-        :return: 多态键值路径映射格式(PKVPM)数据字符串
+        将输入数据转换为多态键值路径映射格式/Convert input data to polymorphic key-value path mapping format
+        :param content: 输入数据(字符串或字典)/Input data (string or dictionary)
+        :return: 多态键值路径映射格式(PKVPM)数据字符串/Polytypic key-value path mapping (PKVPM) data string
         """
 
         # 如果是字符串就假设输入为YAML文本并转换为字典对象，如果是字典就直接使用无需转换。
+        # If it is a string, it is assumed that the input is YAML text and converted to a dictionary object, and if it is a dictionary, it is used directly without conversion.
         content = yaml.safe_load(content) if isinstance(content, str) else content
 
-        # 转换为线性格式
+        # 转换为线性格式/Convert to linear format
         linear_format = list(self.linear_format_generator(content))
 
-        # 保存线性格式数据
+        # 保存线性格式数据/Save linear format data
         line_list = []
         for path, value, value_type in linear_format:
             # 如果值的类型是列表，不进行转换，直接保存
+            # If the value type is a list, do not convert, save directly
             if value_type == list:
                 line = f"[{value_type.__name__}]: {path}: {value}"
             else:
@@ -70,13 +73,14 @@ class Parser:
 
         result = "\n".join(line_list)
 
-        # 返回线性格式数据
+        # 返回线性格式数据/Return linear format data
         return result
 
     def translate_list(self, value):
         """
-        将列表字符串转换为列表，并保留每个元素的类型
-        value: 列表字符串，例如：1|[int], 2.2|[float], true|[bool]
+        将列表字符串转换为列表，并保留每个元素的类型/Convert list string to list and retain the type of each element
+        :param value: 列表字符串/List string
+        例如/Example：1|[int], 2.2|[float], true|[bool]
         """
         items = [
             item.split("|[") for item in value.split(", ") if item.strip()
@@ -102,6 +106,7 @@ class Parser:
         :param path: 路径
         :param value: 值
         :param value_type: 值类型
+        :param data: 数据字典
         """
         keys = path.split(".")
         current_dict = self.data if data is None else data
@@ -212,12 +217,12 @@ if __name__ == "__main__":
 
     # 将PKVPM格式数据转换为YAML格式
     pkvpm_to_yaml_content = parser.to_yaml(yaml_to_pkvpm_content, test_yml_path)
-    # print(f"PKVPM to YAML:\n{pkvpm_to_yaml_content}")
+    print(f"PKVPM to YAML:\n{pkvpm_to_yaml_content}")
 
     # 将PKVPM格式数据转换为JSON格式
     pkvpm_to_json_content = parser.to_json(yaml_to_pkvpm_content, test_json_path)
-    # print(f"PKVPM to JSON:\n{pkvpm_to_json_content}")
+    print(f"PKVPM to JSON:\n{pkvpm_to_json_content}")
 
     # 将JSON数据转换为PKVPM格式
     json_to_pkvpm_content = parser.parse(pkvpm_to_json_content)
-    # print(f"JSON to PKVPM:\n{json_to_pkvpm_content}")
+    print(f"JSON to PKVPM:\n{json_to_pkvpm_content}")
