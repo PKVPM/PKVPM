@@ -1,76 +1,2237 @@
 {
-   "menu_title":"&8Vip Skill Tree | &6Baker",
-   "open_command":[
-      "jobs skilltree Baker vip",
-      "job skilltree Baker vip"
-   ],
-   "size":45,
-   "open_requirement":{
-      "minimum_requirements":1,
-      "stop_at_success":true,
-      "requirements":{
-         "perm1":{
-            "type":"has permission",
-            "permission":"jobs.all.vipmaxlevel"
-         },
-         "perm2":{
-            "type":"has permission",
-            "permission":"jobs.baker.vipmaxlevel"
-         }
-      }
-   },
-   "update_interval":1,
-   "items":{
-      "2":{
-         "material":"red_stained_glass",
-         "slot":4,
-         "priority":3,
-         "display_name":"&4&nLevel 1",
-         "hide_attributes":true,
-         "lore":[
-            "&cAttention! Rewards can only be claimed",
-            "&cafter you level up to the shown level.",
-            "",
-            "&6Rewards:",
-            "&#eb984e➟ &a&l$&a150",
-            "&#eb984e➟ &d1.5&d&lXP &dboost for 2h",
-            "&#eb984e➟ &e0.5&e&lP &eboost for 2h"
-         ],
-         "left_click_commands":[
-            "[refresh]"
-         ],
-         "right_click_commands":[
-            "[refresh]"
-         ]
-      },
-      "3":{
-         "material":"lime_stained_glass",
-         "slot":4,
-         "priority":2,
-         "view_requirement":{
-            "requirements":{
-               "claimed":{
-                  "type":"has permission",
-                  "permission":"jobs.vipbaker.level1"
-               }
-            }
-         },
-         "display_name":"&a&nLevel 1",
-         "hide_attributes":true,
-         "lore":[
-            "&7Reward has been claimed.",
-            "",
-            "&6Rewards:",
-            "&#eb984e➟ &a&l$&a150",
-            "&#eb984e➟ &d1.5&d&lXP &dboost for 2h",
-            "&#eb984e➟ &e0.5&e&lP &eboost for 2h"
-         ],
-         "left_click_commands":[
-            "[refresh]"
-         ],
-         "right_click_commands":[
-            "[refresh]"
-         ]
-      }
-   }
+    "menu_title": "&8工作技能树 | &e面包师",
+    "open_command": [
+        "jobs skilltree Baker",
+        "job skilltree Baker"
+    ],
+    "size": 54,
+    "update_interval": 1,
+    "items": {
+        "1": {
+            "material": "CAKE",
+            "slot": 4,
+            "display_name": "&e&l面包师",
+            "hide_attributes": true,
+            "lore": [
+                "",
+                "&e描述:",
+                "&e&l* &7在这个菜单中，您可以查看您的等级",
+                "&e&l* &7进展情况，对于&e&n面包师&7职业。",
+                ""
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "2": {
+            "material": "red_stained_glass_pane",
+            "slot": 9,
+            "priority": 3,
+            "display_name": "&4&n等级 1",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！奖励只能在达到所示等级后领取",
+                "&c注意! Rewards can only be claimed",
+                "&c在达到所示的等级之后。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a10"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "3": {
+            "material": "lime_stained_glass_pane",
+            "slot": 9,
+            "priority": 2,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level1"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 1",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a10"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "4": {
+            "material": "green_stained_glass_pane",
+            "slot": 9,
+            "priority": 1,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 1"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level1"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 1",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a10"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level1",
+                "[console] eco give %player_name% 10",
+                "[close]"
+            ]
+        },
+        "5": {
+            "material": "red_stained_glass_pane",
+            "slot": 10,
+            "priority": 3,
+            "amount": 2,
+            "display_name": "&4&n等级 2",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！奖励只能在达到所示等级后领取",
+                "&c注意! Rewards can only be claimed",
+                "&c在达到所示的等级之后。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a20"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "6": {
+            "material": "lime_stained_glass_pane",
+            "slot": 10,
+            "priority": 2,
+            "amount": 2,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level2"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 2",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a20"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "7": {
+            "material": "green_stained_glass_pane",
+            "slot": 10,
+            "priority": 1,
+            "amount": 2,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 2"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level2"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 2",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a20"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level2",
+                "[console] eco give %player_name% 20",
+                "[close]"
+            ]
+        },
+        "8": {
+            "material": "red_stained_glass_pane",
+            "slot": 11,
+            "priority": 3,
+            "amount": 3,
+            "display_name": "&4&n等级 3",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！奖励只能在达到所示等级后领取",
+                "&c注意! Rewards can only be claimed",
+                "&c在达到所示的等级之后。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a32个面包"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "9": {
+            "material": "lime_stained_glass_pane",
+            "slot": 11,
+            "priority": 2,
+            "amount": 3,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level3"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 3",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a32个面包"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "10": {
+            "material": "green_stained_glass_pane",
+            "slot": 11,
+            "priority": 1,
+            "amount": 3,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 3"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level3"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 3",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a32个面包"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level3",
+                "[console] minecraft:minecraft:give %player_name% BREAD 32",
+                "[close]"
+            ]
+        },
+        "11": {
+            "material": "red_stained_glass_pane",
+            "slot": 12,
+            "priority": 3,
+            "amount": 4,
+            "display_name": "&4&n等级 4",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！奖励只能在达到所示等级后领取",
+                "&c注意! Rewards can only be claimed",
+                "&c在达到所示的等级之后。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a4个蛋糕"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "12": {
+            "material": "lime_stained_glass_pane",
+            "slot": 12,
+            "priority": 2,
+            "amount": 4,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level4"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 4",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a4个蛋糕"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "13": {
+            "material": "green_stained_glass_pane",
+            "slot": 12,
+            "priority": 1,
+            "amount": 4,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 4"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level4"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 4",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a4个蛋糕"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level4",
+                "[console] minecraft:minecraft:give %player_name% CAKE 4",
+                "[close]"
+            ]
+        },
+        "14": {
+            "material": "red_stained_glass_pane",
+            "slot": 13,
+            "priority": 3,
+            "amount": 5,
+            "display_name": "&4&n等级 5",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！奖励只能在达到所示等级后领取",
+                "&c注意! Rewards can only be claimed",
+                "&c在达到所示的等级之后。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a64个曲奇"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "15": {
+            "material": "lime_stained_glass_pane",
+            "slot": 13,
+            "priority": 2,
+            "amount": 5,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level5"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 5",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a64个曲奇"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "16": {
+            "material": "green_stained_glass_pane",
+            "slot": 13,
+            "priority": 1,
+            "amount": 5,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 5"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level5"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 5",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a64个曲奇"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level5",
+                "[console] minecraft:minecraft:give %player_name% COOKIE 64",
+                "[close]"
+            ]
+        },
+        "17": {
+            "material": "red_stained_glass_pane",
+            "slot": 14,
+            "priority": 3,
+            "amount": 6,
+            "display_name": "&4&n等级 6",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！奖励只能在达到所示等级后领取",
+                "&c注意! Rewards can only be claimed",
+                "&c在达到所示的等级之后。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a4个金苹果"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "18": {
+            "material": "lime_stained_glass_pane",
+            "slot": 14,
+            "priority": 2,
+            "amount": 6,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level6"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 6",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取。",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a4个金苹果"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "19": {
+            "material": "green_stained_glass_pane",
+            "slot": 14,
+            "priority": 1,
+            "amount": 6,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 6"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level6"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 6",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a4个金苹果"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level6",
+                "[console] minecraft:minecraft:give %player_name% GOLDEN_APPLE 4",
+                "[close]"
+            ]
+        },
+        "20": {
+            "material": "red_stained_glass_pane",
+            "slot": 15,
+            "priority": 3,
+            "amount": 7,
+            "display_name": "&4&n等级 7",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意! 只有达到此等级后才能获得奖励.",
+                "&c奖励只能在达到指定等级后领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励:",
+                "&a8个蘑菇煲",
+                "&a8个兔子煲",
+                "&a8个甜菜根汤",
+                "&a8个可疑的煲"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "21": {
+            "material": "lime_stained_glass_pane",
+            "slot": 15,
+            "priority": 2,
+            "amount": 7,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level7"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 7",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励:",
+                "&a8个蘑菇煲",
+                "&a8个兔子煲",
+                "&a8个甜菜根汤",
+                "&a8个可疑的煲"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "22": {
+            "material": "green_stained_glass_pane",
+            "slot": 15,
+            "priority": 1,
+            "amount": 7,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 7"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level7"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 7",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励!",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励:",
+                "&a8个蘑菇煲",
+                "&a8个兔子煲",
+                "&a8个甜菜根汤",
+                "&a8个可疑的煲"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level7",
+                "[console] minecraft:minecraft:give %player_name% MUSHROOM_STEW 8",
+                "[console] minecraft:minecraft:give %player_name% RABBIT_STEW 8",
+                "[console] minecraft:minecraft:give %player_name% BEETROOT_SOUP 8",
+                "[console] minecraft:minecraft:give %player_name% SUSPICIOUS_STEW 8",
+                "[close]"
+            ]
+        },
+        "23": {
+            "material": "red_stained_glass_pane",
+            "slot": 16,
+            "priority": 3,
+            "amount": 8,
+            "display_name": "&4&n等级 8",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意! 只有达到此等级后才能获得奖励.",
+                "&c奖励只能在达到指定等级后领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a32个金萝卜"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "24": {
+            "material": "lime_stained_glass_pane",
+            "slot": 16,
+            "priority": 2,
+            "amount": 8,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level8"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 8",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a32个金萝卜"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "25": {
+            "material": "green_stained_glass_pane",
+            "slot": 16,
+            "priority": 1,
+            "amount": 8,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 8"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level8"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 8",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励!",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n物品",
+                "&e&l* &7奖励: &a32个金萝卜"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level8",
+                "[console] minecraft:minecraft:give %player_name% GOLDEN_CARROT 32",
+                "[close]"
+            ]
+        },
+        "26": {
+            "material": "red_stained_glass_pane",
+            "slot": 17,
+            "priority": 3,
+            "amount": 9,
+            "display_name": "&4&n等级 9",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意! 只有达到此等级后才能获得奖励.",
+                "&c奖励只能在达到指定等级后领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a50"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "27": {
+            "material": "lime_stained_glass_pane",
+            "slot": 17,
+            "priority": 2,
+            "amount": 9,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level9"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 9",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a50"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "28": {
+            "material": "green_stained_glass_pane",
+            "slot": 17,
+            "priority": 1,
+            "amount": 9,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 9"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level9"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 9",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励!",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a50"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level9",
+                "[console] eco give %player_name% 50",
+                "[close]"
+            ]
+        },
+        "29": {
+            "material": "red_stained_glass_pane",
+            "slot": 18,
+            "priority": 3,
+            "amount": 10,
+            "display_name": "&4&n等级 10",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意! 只有达到此等级后才能获得奖励.",
+                "&c奖励只能在达到指定等级后领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a100"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "30": {
+            "material": "lime_stained_glass_pane",
+            "slot": 18,
+            "priority": 2,
+            "amount": 10,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level10"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 10",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a100"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "31": {
+            "material": "green_stained_glass_pane",
+            "slot": 18,
+            "priority": 1,
+            "amount": 10,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 10"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level10"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 10",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励!",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n金钱",
+                "&e&l* &7奖励: &a&l$&a100"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level10",
+                "[console] eco give %player_name% 100",
+                "[close]"
+            ]
+        },
+        "32": {
+            "material": "red_stained_glass_pane",
+            "slot": 19,
+            "priority": 3,
+            "amount": 11,
+            "display_name": "&4&n等级 11",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意! 只有达到此等级后才能获得奖励.",
+                "&c奖励只能在达到指定等级后领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n工作经验",
+                "&e&l* &7奖励: &d100 经验"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "33": {
+            "material": "lime_stained_glass_pane",
+            "slot": 19,
+            "priority": 2,
+            "amount": 11,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level11"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 11",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n工作经验",
+                "&e&l* &7奖励: &d100 经验"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "34": {
+            "material": "green_stained_glass_pane",
+            "slot": 19,
+            "priority": 1,
+            "amount": 11,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 11"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level11"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 11",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励!",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n工作经验",
+                "&e&l* &7奖励: &d100 经验"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level11",
+                "[console] jobs grantxp %player_name% Baker 100",
+                "[close]"
+            ]
+        },
+        "35": {
+            "material": "red_stained_glass_pane",
+            "slot": 20,
+            "priority": 3,
+            "amount": 12,
+            "display_name": "&4&n等级 12",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意! 只有达到此等级后才能获得奖励.",
+                "&c奖励只能在达到指定等级后领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n工作经验",
+                "&e&l* &7奖励: &d300 经验"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "36": {
+            "material": "lime_stained_glass_pane",
+            "slot": 20,
+            "priority": 2,
+            "amount": 12,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level12"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 12",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取.",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n工作经验",
+                "&e&l* &7奖励: &d300 经验"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "37": {
+            "material": "green_stained_glass_pane",
+            "slot": 20,
+            "priority": 1,
+            "amount": 12,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 12"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level12"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 12",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励!",
+                "",
+                "&e奖励:",
+                "&e&l* &7奖励类型: &a&n工作经验",
+                "&e&l* &7奖励: &d300 经验"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level12",
+                "[console] jobs grantxp %player_name% Baker 300",
+                "[close]"
+            ]
+        },
+        "38": {
+            "material": "red_stained_glass_pane",
+            "slot": 21,
+            "priority": 3,
+            "amount": 13,
+            "display_name": "&4&n等级 13",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只能在达到该等级后领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作经验",
+                "&e&l* &7奖励：&d450点经验"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "39": {
+            "material": "lime_stained_glass_pane",
+            "slot": 21,
+            "priority": 2,
+            "amount": 13,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level13"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 13",
+            "hide_attributes": true,
+            "lore": [
+                "&7该奖励已领取。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作经验",
+                "&e&l* &7奖励：&d450点经验"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "40": {
+            "material": "green_stained_glass_pane",
+            "slot": 21,
+            "priority": 1,
+            "amount": 13,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 13"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level13"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 13",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作经验",
+                "&e&l* &7奖励：&d450点经验"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level13",
+                "[console] jobs grantxp %player_name% Baker 450",
+                "[close]"
+            ]
+        },
+        "41": {
+            "material": "red_stained_glass_pane",
+            "slot": 22,
+            "priority": 3,
+            "amount": 14,
+            "display_name": "&4&n等级 14",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只能在达到该等级后领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n物品",
+                "&e&l* &7奖励：&a1个附魔金苹果"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "42": {
+            "material": "lime_stained_glass_pane",
+            "slot": 22,
+            "priority": 2,
+            "amount": 14,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level14"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 14",
+            "hide_attributes": true,
+            "lore": [
+                "&7该奖励已领取。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n物品",
+                "&e&l* &7奖励：&a1个附魔金苹果"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "43": {
+            "material": "green_stained_glass_pane",
+            "slot": 22,
+            "priority": 1,
+            "amount": 14,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 14"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level14"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 14",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n物品",
+                "&e&l* &7奖励：&a1个附魔金苹果"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level14",
+                "[console] minecraft:minecraft:give %player_name% ENCHANTED_GOLDEN_APPLE 1",
+                "[close]"
+            ]
+        },
+        "44": {
+            "material": "red_stained_glass_pane",
+            "slot": 23,
+            "priority": 3,
+            "amount": 15,
+            "display_name": "&4&n等级 15",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只能在达到该等级后领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作点数",
+                "&e&l* &7奖励：&e10点工作点数"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "45": {
+            "material": "lime_stained_glass_pane",
+            "slot": 23,
+            "priority": 2,
+            "amount": 15,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level15"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 15",
+            "hide_attributes": true,
+            "lore": [
+                "&7该奖励已领取。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作点数",
+                "&e&l* &7奖励：&e10点工作点数"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "46": {
+            "material": "green_stained_glass_pane",
+            "slot": 23,
+            "priority": 1,
+            "amount": 15,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 15"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level15"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 15",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作点数",
+                "&e&l* &7奖励：&e10点工作点数"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level15",
+                "[console] jobs editpoints add %player_name% 10",
+                "[close]"
+            ]
+        },
+        "47": {
+            "material": "red_stained_glass_pane",
+            "slot": 24,
+            "priority": 3,
+            "amount": 16,
+            "display_name": "&4&n等级 16",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只能在达到该等级后领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作点数",
+                "&e&l* &7奖励：&e20点工作点数"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "48": {
+            "material": "lime_stained_glass_pane",
+            "slot": 24,
+            "priority": 2,
+            "amount": 16,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level16"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 16",
+            "hide_attributes": true,
+            "lore": [
+                "&7该奖励已领取。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作点数",
+                "&e&l* &7奖励：&e20点工作点数"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "49": {
+            "material": "green_stained_glass_pane",
+            "slot": 24,
+            "priority": 1,
+            "amount": 16,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 16"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level16"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 16",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作点数",
+                "&e&l* &7奖励：&e20点工作点数"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level16",
+                "[console] jobs editpoints add %player_name% 20",
+                "[close]"
+            ]
+        },
+        "50": {
+            "material": "red_stained_glass_pane",
+            "slot": 25,
+            "priority": 3,
+            "amount": 17,
+            "display_name": "&4&n等级 17",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只能在达到该等级后领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n物品",
+                "&e&l* &7奖励：&a16个黄金苹果"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "51": {
+            "material": "lime_stained_glass_pane",
+            "slot": 25,
+            "priority": 2,
+            "amount": 17,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level17"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 17",
+            "hide_attributes": true,
+            "lore": [
+                "&7该奖励已领取。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n物品",
+                "&e&l* &7奖励：&a16个黄金苹果"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "52": {
+            "material": "green_stained_glass_pane",
+            "slot": 25,
+            "priority": 1,
+            "amount": 17,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 17"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level17"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 17",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n物品",
+                "&e&l* &7奖励：&a16个黄金苹果"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level17",
+                "[console] minecraft:minecraft:give %player_name% golden_apple 16",
+                "[close]"
+            ]
+        },
+        "53": {
+            "material": "red_stained_glass_pane",
+            "slot": 26,
+            "priority": 3,
+            "amount": 18,
+            "display_name": "&4&n等级 18",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只能在达到该等级后领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n物品",
+                "&e&l* &7奖励：",
+                "&a8个发射器",
+                "&a8个水桶（水）",
+                "&a16个红石块"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "54": {
+            "material": "lime_stained_glass_pane",
+            "slot": 26,
+            "priority": 2,
+            "amount": 18,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level18"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 18",
+            "hide_attributes": true,
+            "lore": [
+                "&7该奖励已领取。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n物品",
+                "&e&l* &7奖励：",
+                "&a8个发射器",
+                "&a8个水桶（水）",
+                "&a16个红石块"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "55": {
+            "material": "lime_stained_glass_pane",
+            "slot": 26,
+            "priority": 1,
+            "amount": 18,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 18"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level18"
+                    }
+                }
+            },
+            "display_name": "&2&n18级",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n物品",
+                "&e&l* &7奖励：",
+                "&a8个放置器",
+                "&a8个水桶",
+                "&a16个红石方块"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level18",
+                "[console] minecraft:give %player_name% DROPPER 8",
+                "[console] minecraft:give %player_name% WATER_BUCKET 8",
+                "[console] minecraft:give %player_name% REDSTONE_BLOCK 8",
+                "[close]"
+            ]
+        },
+        "56": {
+            "material": "red_stained_glass_pane",
+            "slot": 27,
+            "priority": 3,
+            "amount": 19,
+            "display_name": "&4&n19级",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只有达到该等级后才能领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n职业点数",
+                "&e&l* &7奖励：&e30点"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "57": {
+            "material": "lime_stained_glass_pane",
+            "slot": 27,
+            "priority": 2,
+            "amount": 19,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level19"
+                    }
+                }
+            },
+            "display_name": "&a&n19级",
+            "hide_attributes": true,
+            "lore": [
+                "&7已领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n职业点数",
+                "&e&l* &7奖励：&e30点"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "58": {
+            "material": "green_stained_glass_pane",
+            "slot": 27,
+            "priority": 1,
+            "amount": 19,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 19"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level19"
+                    }
+                }
+            },
+            "display_name": "&2&n19级",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n职业点数",
+                "&e&l* &7奖励：&e30点"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level19",
+                "[console] jobs editpoints add %player_name% 30",
+                "[close]"
+            ]
+        },
+        "59": {
+            "material": "red_stained_glass_pane",
+            "slot": 28,
+            "priority": 3,
+            "amount": 20,
+            "display_name": "&4&n20级",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只有达到该等级后才能领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n职业点数",
+                "&e&l* &7奖励：&e40点"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "60": {
+            "material": "lime_stained_glass_pane",
+            "slot": 28,
+            "priority": 2,
+            "amount": 20,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level20"
+                    }
+                }
+            },
+            "display_name": "&a&n20级",
+            "hide_attributes": true,
+            "lore": [
+                "&7已领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n职业点数",
+                "&e&l* &7奖励：&e40点"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "61": {
+            "material": "green_stained_glass_pane",
+            "slot": 28,
+            "priority": 1,
+            "amount": 20,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 20"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level20"
+                    }
+                }
+            },
+            "display_name": "&2&n20级",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n职业点数",
+                "&e&l* &7奖励：&e40点"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level20",
+                "[console] jobs editpoints add %player_name% 40",
+                "[close]"
+            ]
+        },
+        "62": {
+            "material": "red_stained_glass_pane",
+            "slot": 29,
+            "priority": 3,
+            "amount": 21,
+            "display_name": "&4&n21级",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只有达到该等级后才能领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n金钱",
+                "&e&l* &7奖励：&a&l$&a150"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "63": {
+            "material": "lime_stained_glass_pane",
+            "slot": 29,
+            "priority": 2,
+            "amount": 21,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level21"
+                    }
+                }
+            },
+            "display_name": "&a&n21级",
+            "hide_attributes": true,
+            "lore": [
+                "&7已领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n金钱",
+                "&e&l* &7奖励：&a&l$&a150"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "64": {
+            "material": "green_stained_glass_pane",
+            "slot": 29,
+            "priority": 1,
+            "amount": 21,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 21"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level21"
+                    }
+                }
+            },
+            "display_name": "&2&n21级",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n金钱",
+                "&e&l* &7奖励：&a&l$&a150"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level21",
+                "[console] eco give %player_name% 150",
+                "[close]"
+            ]
+        },
+        "65": {
+            "material": "red_stained_glass_pane",
+            "slot": 30,
+            "priority": 3,
+            "amount": 22,
+            "display_name": "&4&n22级",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只有达到该等级后才能领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n金钱",
+                "&e&l* &7奖励：&a&l$&a200"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "66": {
+            "material": "lime_stained_glass_pane",
+            "slot": 30,
+            "priority": 2,
+            "amount": 22,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level22"
+                    }
+                }
+            },
+            "display_name": "&a&n22级",
+            "hide_attributes": true,
+            "lore": [
+                "&7已领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n金钱",
+                "&e&l* &7奖励：&a&l$&a200"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "67": {
+            "material": "green_stained_glass_pane",
+            "slot": 30,
+            "priority": 1,
+            "amount": 22,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 22"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level22"
+                    }
+                }
+            },
+            "display_name": "&2&n22级",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n金钱",
+                "&e&l* &7奖励：&a&l$&a200"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level22",
+                "[console] eco give %player_name% 200",
+                "[close]"
+            ]
+        },
+        "68": {
+            "material": "red_stained_glass_pane",
+            "slot": 31,
+            "priority": 3,
+            "amount": 23,
+            "display_name": "&4&n23级",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只有达到该等级后才能领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n金钱",
+                "&e&l* &7奖励：&a&l$&a250"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "69": {
+            "material": "lime_stained_glass_pane",
+            "slot": 31,
+            "priority": 2,
+            "amount": 23,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level23"
+                    }
+                }
+            },
+            "display_name": "&a&n23级",
+            "hide_attributes": true,
+            "lore": [
+                "&7已领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n金钱",
+                "&e&l* &7奖励：&a&l$&a250"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "70": {
+            "material": "green_stained_glass_pane",
+            "slot": 31,
+            "priority": 1,
+            "amount": 23,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 23"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level23"
+                    }
+                }
+            },
+            "display_name": "&2&n23级",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n金钱",
+                "&e&l* &7奖励：&a&l$&a250"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level23",
+                "[console] eco give %player_name% 250",
+                "[close]"
+            ]
+        },
+        "71": {
+            "material": "red_stained_glass_pane",
+            "slot": 32,
+            "priority": 3,
+            "amount": 24,
+            "display_name": "&4&n24级",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只有达到该等级后才能领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n职业点数",
+                "&e&l* &7奖励：&e50点"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "72": {
+            "material": "lime_stained_glass_pane",
+            "slot": 32,
+            "priority": 2,
+            "amount": 24,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level24"
+                    }
+                }
+            },
+            "display_name": "&a&n24级",
+            "hide_attributes": true,
+            "lore": [
+                "&7已领取奖励。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n职业点数",
+                "&e&l* &7奖励：&e50点"
+            ]
+        },
+        "73": {
+            "material": "green_stained_glass_pane",
+            "slot": 32,
+            "priority": 1,
+            "amount": 24,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 24"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level24"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 24",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击以领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作点数",
+                "&e&l* &7奖励：&e50点"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level24",
+                "[console] jobs editpoints add %player_name% 50",
+                "[close]"
+            ]
+        },
+        "74": {
+            "material": "red_stained_glass_pane",
+            "slot": 33,
+            "priority": 3,
+            "amount": 25,
+            "display_name": "&4&n等级 25",
+            "hide_attributes": true,
+            "lore": [
+                "&c注意！只有当你达到对应的等级才能领取奖励",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作经验",
+                "&e&l* &7奖励：&d500经验"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "75": {
+            "material": "lime_stained_glass_pane",
+            "slot": 33,
+            "priority": 2,
+            "amount": 25,
+            "view_requirement": {
+                "requirements": {
+                    "claimed": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.level25"
+                    }
+                }
+            },
+            "display_name": "&a&n等级 25",
+            "hide_attributes": true,
+            "lore": [
+                "&7奖励已领取。",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作经验",
+                "&e&l* &7奖励：&d500经验"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "76": {
+            "material": "green_stained_glass_pane",
+            "slot": 33,
+            "priority": 1,
+            "amount": 25,
+            "update": true,
+            "view_requirement": {
+                "requirements": {
+                    "level": {
+                        "type": "javascript",
+                        "expression": "%jobsr_user_jlevel_Baker% >= 25"
+                    },
+                    "perm": {
+                        "type": "!has permission",
+                        "permission": "jobs.baker.level25"
+                    }
+                }
+            },
+            "display_name": "&2&n等级 25",
+            "hide_attributes": true,
+            "lore": [
+                "&a点击以领取奖励！",
+                "",
+                "&e奖励：",
+                "&e&l* &7奖励类型：&a&n工作经验",
+                "&e&l* &7奖励：&d500经验"
+            ],
+            "left_click_commands": [
+                "[console] lp user %player_name% permission set jobs.baker.level25",
+                "[console] jobs grantxp %player_name% Fisherman 500",
+                "[close]"
+            ]
+        },
+        "83": {
+            "material": "orange_stained_glass_pane",
+            "slot": 8,
+            "amount": 1,
+            "priority": 2,
+            "display_name": "&#e67e22&lVIP等级",
+            "hide_attributes": true,
+            "lore": [
+                "&c你没有权限访问",
+                "&c下面的菜单。",
+                "",
+                "&6说明：",
+                "&#eb984e&l* &7这些等级仅供VIP玩家使用。",
+                "&#eb984e&l* &7你可以在商店购买&6VIP会员身份&7。",
+                "",
+                "&#dc7633&o              store.yourserver.com"
+            ],
+            "left_click_commands": [
+                "[refresh]"
+            ],
+            "right_click_commands": [
+                "[refresh]"
+            ]
+        },
+        "84": {
+            "material": "orange_stained_glass_pane",
+            "slot": 8,
+            "amount": 1,
+            "priority": 1,
+            "enchantments": [
+                "DIG_SPEED;1"
+            ],
+            "hide_enchantments": true,
+            "hide_attributes": true,
+            "view_requirement": {
+                "minimum_requirements": 1,
+                "stop_at_success": true,
+                "requirements": {
+                    "perm1": {
+                        "type": "has permission",
+                        "permission": "jobs.all.vipmaxlevel"
+                    },
+                    "perm2": {
+                        "type": "has permission",
+                        "permission": "jobs.baker.vipmaxlevel"
+                    }
+                }
+            },
+            "display_name": "&#e67e22&lVIP等级",
+            "lore": [
+                "",
+                "&6说明：",
+                "&#eb984e&l* &7点击打开VIP等级菜单，",
+                "&#eb984e&l* &7在那里你可以领取你的独家奖励。",
+                "",
+                "&6奖励： &7从等级&#eb984e1 &7到 &#eb984e250",
+                "",
+                "&a✔ &a&lVIP会员身份"
+            ],
+            "left_click_commands": [
+                "[openguimenu] skilltreebakervip"
+            ],
+            "right_click_commands": [
+                "[openguimenu] skilltreebakervip"
+            ]
+        },
+        "100": {
+            "material": "BARRIER",
+            "slot": 49,
+            "display_name": "&c[返回]",
+            "lore": [
+                "&7点击返回",
+                "&7到选择菜单"
+            ],
+            "left_click_commands": [
+                "[openguimenu] skilltreeselectjob"
+            ],
+            "right_click_commands": [
+                "[openguimenu] skilltreeselectjob"
+            ]
+        },
+        "101": {
+            "material": "GRAY_STAINED_GLASS_PANE",
+            "display_name": "",
+            "lore": [],
+            "slots": [
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44
+            ]
+        }
+    }
 }

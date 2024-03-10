@@ -79,17 +79,17 @@ class Parser:
         value: 列表字符串，例如：1|[int], 2.2|[float], true|[bool]
         """
         items = [
-            item.split("|") for item in value.split(", ") if item.strip()
+            item.split("|[") for item in value.split(", ") if item.strip()
         ]  # 跳过空字符串的元素
         result = []
         for item in items:
             if isinstance(item, list) and len(item) == 2:
                 item_value, item_type = item
-                if item_type == "[int]":
+                if item_type == "int]":
                     result.append(int(item_value))
-                elif item_type == "[float]":
+                elif item_type == "float]":
                     result.append(float(item_value))
-                elif item_type == "[bool]":
+                elif item_type == "bool]":
                     result.append(item_value.lower() == "true")
                 else:
                     result.append(item_value)
@@ -133,11 +133,18 @@ class Parser:
             value_type,
         )
 
-    def to_json(self):
+    def to_json(self, pkvpm_str, file_path=None):
         """
         将数据转换为 JSON 格式
         """
-        return json.dumps(self.data, indent=4)
+        yaml_data = self.to_yaml(pkvpm_str, file_path=file_path)
+        json_data = json.dumps(yaml.safe_load(yaml_data), ensure_ascii=False, indent=4)
+
+        if file_path:
+            with open(file_path, "w", encoding="utf-8") as file:
+                file.write(json_data)
+
+        return json_data
 
     def to_yaml(self, data=None, file_path=None):
         """
@@ -160,8 +167,8 @@ class Parser:
         if file_path:
             with open(file_path, "w", encoding="utf-8") as file:
                 yaml.dump(data, file, sort_keys=False, indent=4, allow_unicode=True)
-        else:
-            print(yaml.dump(data, sort_keys=False, indent=4, allow_unicode=True, default_flow_style=False))
+
+        return yaml.dump(data, sort_keys=False, indent=4, allow_unicode=True)
 
 
 if __name__ == "__main__":
@@ -180,38 +187,37 @@ if __name__ == "__main__":
 
     import os
 
-    # 创建解析器
     parser = Parser()
 
-    # 构建到tests目录下文件的路径
-    tests_file_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.yml')
+    # 示例使用，读取测试需要的一共3个文件（test.yml, test.json, test.pkvpm）
+    test_yml_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.yml')
+    test_json_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.json')
+    test_pkv_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.pkvpm')
 
-    # 读取 YAML 文件
-    with open(tests_file_path, 'r', encoding='utf-8') as file:
-        content = file.read()
+    # 读取YAML文件
+    with open(test_yml_path, 'r', encoding='utf-8') as file:
+        test_yml_content = file.read()
 
-    # 解析 YAML 数据
-    pkvpm_content = parser.parse(content)
-    print(pkvpm_content)
+    # 读取JSON文件
+    with open(test_json_path, 'r', encoding='utf-8') as file:
+        test_json_content = file.read()
 
-    # 保存 PKVPM 数据
-    pkvpm_file_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.pkvpm')
-    with open(pkvpm_file_path, 'w', encoding='utf-8') as file:
-        file.write(pkvpm_content)
+    # 读取PKV文件
+    with open(test_pkv_path, 'r', encoding='utf-8') as file:
+        test_pkvpm_content = file.read()
 
-    # 读取 PKVPM 文件
-    with open(pkvpm_file_path, 'r', encoding='utf-8') as file:
-        data = file.read()
+    # 将YAML数据转换为PKVPM格式
+    yaml_to_pkvpm_content = parser.parse(test_yml_content)
+    print(f"YAML to PKVPM:\n{yaml_to_pkvpm_content}")
 
-    # 添加翻译
-    for line in data.split('\n'):
-        if line:
-            path, value, value_type = parser.process_translation_line(line)
-            parser.add_translation(path, value, value_type)
+    # 将PKVPM格式数据转换为YAML格式
+    pkvpm_to_yaml_content = parser.to_yaml(yaml_to_pkvpm_content, test_yml_path)
+    # print(f"PKVPM to YAML:\n{pkvpm_to_yaml_content}")
 
-    # 输出 JSON 格式数据
-    # print(parser.to_json())
+    # 将PKVPM格式数据转换为JSON格式
+    pkvpm_to_json_content = parser.to_json(yaml_to_pkvpm_content, test_json_path)
+    # print(f"PKVPM to JSON:\n{pkvpm_to_json_content}")
 
-    # 输出 YAML 格式数据
-    yaml_file = parser.to_yaml(data, os.path.join(os.path.dirname(__file__), '..', 'tests', 'test_output.yml'))
-    print(yaml_file)
+    # 将JSON数据转换为PKVPM格式
+    json_to_pkvpm_content = parser.parse(pkvpm_to_json_content)
+    # print(f"JSON to PKVPM:\n{json_to_pkvpm_content}")

@@ -1,57 +1,657 @@
-menu_title: Skill \n hhh  Tree \n  | &6Baker
+menu_title: '&8工作奖励 | &2建筑师'
 open_command:
-- jobs skilltree Baker vip
-- job skilltree Baker vip
-size: 45
-open_requirement:
-    minimum_requirements: 1
-    stop_at_success: true
-    requirements:
-        perm1:
-            type: has permission
-            permission: jobs.all.vipmaxlevel
-        perm2:
-            type: has permission
-            permission: jobs.baker.vipmaxlevel
-update_interval: 1
+- jobs payouts Builder4
+- job payouts Builder4
+- job info Builder4
+- jobs info Builder4
+size: 54
 items:
+    '1':
+        material: orange_stained_glass
+        slot: 10
+        display_name: '&7&l橙色染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
     '2':
-        material: red_stained_glass
-        slot: 4
-        priority: 3
-        display_name: '&4&nLevel 1'
+        material: magenta_stained_glass
+        slot: 11
+        display_name: '&7&l品红染色玻璃'
         hide_attributes: true
         lore:
-        - '&cAttention! Rewards can only be claimed'
-        - '&cafter you level up to the shown level.'
         - ''
-        - '&6Rewards:'
-        - '&#eb984e➟ &a&l$&a150'
-        - '&#eb984e➟ &d1.5&d&lXP &dboost for 2h'
-        - '&#eb984e➟ &e0.5&e&lP &eboost for 2h'
-        left_click_commands:
-        - '[refresh]'
-        right_click_commands:
-        - '[refresh]'
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
     '3':
-        material: lime_stained_glass
-        slot: 4
-        priority: 2
-        view_requirement:
-            requirements:
-                claimed:
-                    type: has permission
-                    permission: jobs.vipbaker.level1
-        display_name: '&a&nLevel 1'
+        material: light_blue_stained_glass
+        slot: 12
+        display_name: '&7&l淡蓝染色玻璃'
         hide_attributes: true
         lore:
-        - '&7Reward has been claimed.'
         - ''
-        - '&6Rewards:'
-        - '&#eb984e➟ &a&l$&a150'
-        - '&#eb984e➟ &d1.5&d&lXP &dboost for 2h'
-        - '&#eb984e➟ &e0.5&e&lP &eboost for 2h'
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '4':
+        material: yellow_stained_glass
+        slot: 13
+        display_name: '&7&l黄色染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '5':
+        material: lime_stained_glass
+        slot: 14
+        display_name: '&7&l绿色染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '6':
+        material: pink_stained_glass
+        slot: 15
+        display_name: '&7&l粉红染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '7':
+        material: light_gray_stained_glass
+        slot: 16
+        display_name: '&7&l浅灰染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '8':
+        material: cyan_stained_glass
+        slot: 19
+        display_name: '&7&l青色染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '9':
+        material: purple_stained_glass
+        slot: 20
+        display_name: '&7&l紫色染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '10':
+        material: blue_stained_glass
+        slot: 21
+        display_name: '&7&l蓝色染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '11':
+        material: brown_stained_glass
+        slot: 22
+        display_name: '&7&l棕色染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '12':
+        material: green_stained_glass
+        slot: 23
+        display_name: '&7&l绿色染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '13':
+        material: red_stained_glass
+        slot: 24
+        display_name: '&7&l红色染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '14':
+        material: black_stained_glass
+        slot: 25
+        display_name: '&7&l黑色染色玻璃'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.4 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.4 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.045 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '15':
+        material: iron_trapdoor
+        slot: 28
+        display_name: '&7&l铁陷阱门'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.08 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.08 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.05 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '16':
+        material: oak_trapdoor
+        slot: 29
+        display_name: '&7&l橡木陷阱门'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.08 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.08 工作经验 &7'
+            - ' 每块.'
+            - '[str]'
+        -   - '&2&l* &7积分: &e0.05 积分 &7'
+            - ' 每块.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '17':
+        material: spruce_trapdoor
+        slot: 30
+        display_name: '&7&l云杉活板门'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益：'
+        - '&2&l* &7行动：&c放置'
+        -   - '&2&l* &7金钱：&a&l$&a0.08 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7经验：&d0.08 工作经验 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7积分：&e0.05 积分 &7'
+            - ' 每件。'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '18':
+        material: birch_trapdoor
+        slot: 31
+        display_name: '&7&l桦木活板门'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益：'
+        - '&2&l* &7行动：&c放置'
+        -   - '&2&l* &7金钱：&a&l$&a0.08 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7经验：&d0.08 工作经验 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7积分：&e0.05 积分 &7'
+            - ' 每件。'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '19':
+        material: jungle_trapdoor
+        slot: 32
+        display_name: '&7&l丛林活板门'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益：'
+        - '&2&l* &7行动：&c放置'
+        -   - '&2&l* &7金钱：&a&l$&a0.08 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7经验：&d0.08 工作经验 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7积分：&e0.05 积分 &7'
+            - ' 每件。'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '20':
+        material: acacia_trapdoor
+        slot: 33
+        display_name: '&7&l相思活板门'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益：'
+        - '&2&l* &7行动：&c放置'
+        -   - '&2&l* &7金钱：&a&l$&a0.08 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7经验：&d0.08 工作经验 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7积分：&e0.05 积分 &7'
+            - ' 每件。'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '21':
+        material: dark_oak_trapdoor
+        slot: 34
+        display_name: '&7&l深色橡木活板门'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益：'
+        - '&2&l* &7行动：&c放置'
+        -   - '&2&l* &7金钱：&a&l$&a0.08 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7经验：&d0.08 工作经验 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7积分：&e0.05 积分 &7'
+            - ' 每件。'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '22':
+        material: stone_bricks
+        slot: 37
+        display_name: '&7&l石砖'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益：'
+        - '&2&l* &7行动：&c放置'
+        -   - '&2&l* &7金钱：&a&l$&a0.1 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7经验：&d0.1 工作经验 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7积分：&e0.05 积分 &7'
+            - ' 每件。'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '23':
+        material: mossy_stone_bricks
+        slot: 38
+        display_name: '&7&l苔痕石砖'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益：'
+        - '&2&l* &7行动：&c放置'
+        -   - '&2&l* &7金钱：&a&l$&a0.1 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7经验：&d0.1 工作经验 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7积分：&e0.05 积分 &7'
+            - ' 每件。'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '24':
+        material: cracked_stone_bricks
+        slot: 39
+        display_name: '&7&l裂纹石砖'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益：'
+        - '&2&l* &7行动：&c放置'
+        -   - '&2&l* &7金钱：&a&l$&a0.1 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7经验：&d0.1 工作经验 &7'
+            - ' 每件。'
+            - '[str]'
+        -   - '&2&l* &7积分：&e0.05 积分 &7'
+            - ' 每件。'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '25':
+        material: chiseled_stone_bricks
+        slot: 40
+        display_name: '&7&l镂空石砖'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.1 &7'
+            - ' 每个.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.1 工作经验 &7'
+            - ' 每个.'
+            - '[str]'
+        -   - '&2&l* &7点数: &e0.05 点数 &7'
+            - ' 每个.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '26':
+        material: iron_bars
+        slot: 41
+        display_name: '&7&l铁栏杆'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.03 &7'
+            - ' 每个.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.03 工作经验 &7'
+            - ' 每个.'
+            - '[str]'
+        -   - '&2&l* &7点数: &e0.02 点数 &7'
+            - ' 每个.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '27':
+        material: glass_pane
+        slot: 42
+        display_name: '&7&l玻璃窗格'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.2 &7'
+            - ' 每个.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.2 工作经验 &7'
+            - ' 每个.'
+            - '[str]'
+        -   - '&2&l* &7点数: &e0.02 点数 &7'
+            - ' 每个.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '28':
+        material: white_stained_glass_pane
+        slot: 43
+        display_name: '&7&l白色染色玻璃窗格'
+        hide_attributes: true
+        lore:
+        - ''
+        - '&2收益:'
+        - '&2&l* &7动作: &c放置'
+        -   - '&2&l* &7金钱: &a&l$&a0.2 &7'
+            - ' 每个.'
+            - '[str]'
+        -   - '&2&l* &7经验: &d0.2 工作经验 &7'
+            - ' 每个.'
+            - '[str]'
+        -   - '&2&l* &7点数: &e0.02 点数 &7'
+            - ' 每个.'
+            - '[str]'
+        - ''
+        left_click_commands: []
+        right_click_commands: []
+    '102':
+        material: ARROW
+        slot: 47
+        display_name: '&e&l<- 上一页'
+        lore:
+        - '&7点击以进入'
+        - '&7上一页'
         left_click_commands:
-        - '[refresh]'
+        - '[openguimenu] builderpayouts3'
         right_click_commands:
-        - '[refresh]'
+        - '[openguimenu] builderpayout3'
+    '103':
+        material: ARROW
+        slot: 51
+        display_name: '&e&l下一页 ->'
+        lore:
+        - '&7点击以进入'
+        - '&7下一页'
+        left_click_commands:
+        - '[openguimenu] builderpayouts5'
+        right_click_commands:
+        - '[openguimenu] builderpayouts5'
+    '100':
+        material: BARRIER
+        slot: 49
+        display_name: '&c[返回]'
+        lore:
+        - '&7点击以返回'
+        - '&7到工作菜单'
+        left_click_commands:
+        - '[openguimenu] builder'
+        right_click_commands:
+        - '[openguimenu] builder'
+    '101':
+        material: GRAY_STAINED_GLASS_PANE
+        display_name: ''
+        lore: []
+        slots:
+        - 45
+        - 46
+        - 48
+        - 50
+        - 52
+        - 53
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 18
+        - 27
+        - 36
+        - 17
+        - 26
+        - 35
+        - 44
