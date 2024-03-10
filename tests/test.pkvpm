@@ -1,0 +1,28 @@
+[str]: menu_title: Skill \n hhh  Tree \n  | &6Baker
+[list]: open_command: jobs skilltree Baker vip|[str], job skilltree Baker vip|[str]
+[int]: size: 45
+[int]: open_requirement.minimum_requirements: 1
+[bool]: open_requirement.stop_at_success: True
+[str]: open_requirement.requirements.perm1.type: has permission
+[str]: open_requirement.requirements.perm1.permission: jobs.all.vipmaxlevel
+[str]: open_requirement.requirements.perm2.type: has permission
+[str]: open_requirement.requirements.perm2.permission: jobs.baker.vipmaxlevel
+[int]: update_interval: 1
+[str]: items.2.material: red_stained_glass
+[int]: items.2.slot: 4
+[int]: items.2.priority: 3
+[str]: items.2.display_name: &4&nLevel 1
+[bool]: items.2.hide_attributes: True
+[list]: items.2.lore: &cAttention! Rewards can only be claimed|[str], &cafter you level up to the shown level.|[str], |[str], &6Rewards:|[str], &#eb984e➟ &a&l$&a150|[str], &#eb984e➟ &d1.5&d&lXP &dboost for 2h|[str], &#eb984e➟ &e0.5&e&lP &eboost for 2h|[str]
+[list]: items.2.left_click_commands: [refresh]|[str]
+[list]: items.2.right_click_commands: [refresh]|[str]
+[str]: items.3.material: lime_stained_glass
+[int]: items.3.slot: 4
+[int]: items.3.priority: 2
+[str]: items.3.view_requirement.requirements.claimed.type: has permission
+[str]: items.3.view_requirement.requirements.claimed.permission: jobs.vipbaker.level1
+[str]: items.3.display_name: &a&nLevel 1
+[bool]: items.3.hide_attributes: True
+[list]: items.3.lore: &7Reward has been claimed.|[str], |[str], &6Rewards:|[str], &#eb984e➟ &a&l$&a150|[str], &#eb984e➟ &d1.5&d&lXP &dboost for 2h|[str], &#eb984e➟ &e0.5&e&lP &eboost for 2h|[str]
+[list]: items.3.left_click_commands: [refresh]|[str]
+[list]: items.3.right_click_commands: [refresh]|[str]

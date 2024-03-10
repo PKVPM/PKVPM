@@ -1,0 +1,57 @@
+menu_title: Skill \n hhh  Tree \n  | &6Baker
+open_command:
+- jobs skilltree Baker vip
+- job skilltree Baker vip
+size: 45
+open_requirement:
+    minimum_requirements: 1
+    stop_at_success: true
+    requirements:
+        perm1:
+            type: has permission
+            permission: jobs.all.vipmaxlevel
+        perm2:
+            type: has permission
+            permission: jobs.baker.vipmaxlevel
+update_interval: 1
+items:
+    '2':
+        material: red_stained_glass
+        slot: 4
+        priority: 3
+        display_name: '&4&nLevel 1'
+        hide_attributes: true
+        lore:
+        - '&cAttention! Rewards can only be claimed'
+        - '&cafter you level up to the shown level.'
+        - ''
+        - '&6Rewards:'
+        - '&#eb984e➟ &a&l$&a150'
+        - '&#eb984e➟ &d1.5&d&lXP &dboost for 2h'
+        - '&#eb984e➟ &e0.5&e&lP &eboost for 2h'
+        left_click_commands:
+        - '[refresh]'
+        right_click_commands:
+        - '[refresh]'
+    '3':
+        material: lime_stained_glass
+        slot: 4
+        priority: 2
+        view_requirement:
+            requirements:
+                claimed:
+                    type: has permission
+                    permission: jobs.vipbaker.level1
+        display_name: '&a&nLevel 1'
+        hide_attributes: true
+        lore:
+        - '&7Reward has been claimed.'
+        - ''
+        - '&6Rewards:'
+        - '&#eb984e➟ &a&l$&a150'
+        - '&#eb984e➟ &d1.5&d&lXP &dboost for 2h'
+        - '&#eb984e➟ &e0.5&e&lP &eboost for 2h'
+        left_click_commands:
+        - '[refresh]'
+        right_click_commands:
+        - '[refresh]'
