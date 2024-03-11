@@ -1,3 +1,17 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+"""
+@Description:PKVPM Parser library for converting between YAML, JSON, and PKVPM formats.
+@Date: 2024/03/10
+@version: 1.0.0
+@License: MIT License
+@Github: https://github.com/PKVPM/PKVPM
+
+@Contributors:
+https://github.com/Evil0ctal
+https://github.com/Johnserf-Seed
+"""
+
 import json
 import yaml
 
@@ -194,20 +208,20 @@ if __name__ == "__main__":
 
     parser = Parser()
 
-    # 示例使用，读取测试需要的一共3个文件（test.yml, test.json, test.pkvpm）
+    # 示例使用，读取测试需要的一共3个文件（test.yml, test.json, test.pkv）
     test_yml_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.yml')
     test_json_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.json')
-    test_pkv_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.pkvpm')
+    test_pkv_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.pkv')
 
-    # 读取YAML文件
+    # 读取YAML文件/Read YAML file
     with open(test_yml_path, 'r', encoding='utf-8') as file:
         test_yml_content = file.read()
 
-    # 读取JSON文件
+    # 读取JSON文件/Read JSON file
     with open(test_json_path, 'r', encoding='utf-8') as file:
         test_json_content = file.read()
 
-    # 读取PKV文件
+    # 读取PKV文件/Read PKV file
     with open(test_pkv_path, 'r', encoding='utf-8') as file:
         test_pkvpm_content = file.read()
 
@@ -215,7 +229,7 @@ if __name__ == "__main__":
     yaml_to_pkvpm_content = parser.parse(test_yml_content)
     print(f"YAML to PKVPM:\n{yaml_to_pkvpm_content}")
 
-    # 将PKVPM格式数据转换为YAML格式
+    # 将PKVPM格式数据转换为YAML格式/Convert PKVPM format data to YAML format
     pkvpm_to_yaml_content = parser.to_yaml(yaml_to_pkvpm_content, test_yml_path)
     print(f"PKVPM to YAML:\n{pkvpm_to_yaml_content}")
 

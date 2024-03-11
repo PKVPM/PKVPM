@@ -1,0 +1,5 @@
+str: name: John Doe
+str: gender: Male
+bool: public: true
+int: age: 30
+list: favorite_books: The Great Gatsby|[str], 1984|[str], Brave New World|[str]
