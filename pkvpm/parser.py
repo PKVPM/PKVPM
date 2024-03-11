@@ -3,7 +3,7 @@
 """
 @Description:PKVPM Parser library for converting between YAML, JSON, and PKVPM formats.
 @Date: 2024/03/10
-@version: 1.0.0
+@version: 1.0.1
 @License: MIT License
 @Github: https://github.com/PKVPM/PKVPM
 
