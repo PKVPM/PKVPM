@@ -16,16 +16,16 @@
 ## 结构展示
 
 ```yaml
-str: key1: value1
-list: key2: value2|[str], value3|[str], value4|[str]
-int: key3: 123
-float: key4: 123.456
-bool: key5: true
-list: key6: 1|[int], 2|[int], 3|[int]
-list: key7: 1.1|[float], 2.2|[float], 3.3|[float]
-list: key8.sub_key1: true|[bool], false|[bool], true|[bool]
-list: key9.sub_key2.sub_key3: 1|[int], 2.2|[float], true|[bool]
-str: path1.path2.path3: value1
+[str]: key1: value1
+[list]: key2: value2|[str], value3|[str], value4|[str]
+[str]: key3: 123
+[str]: key4: 123.456
+[str]: key5: true
+[list]: key6: 1|[int], 2|[int], 3|[int]
+[list]: key7: 1.1|[float], 2.2|[float], 3.3|[float]
+[list]: key8.sub_key1: True|[bool], False|[bool], True|[bool]
+[list]: key9.sub_key2.sub_key3: 1|[int], 2.2|[float], True|[bool]
+[str]: path1.path2.path3: value1
 ```
 
 ## 应用场景
@@ -60,11 +60,11 @@ PKVPM格式在处理需要细粒度编辑和翻译的大型YAML或JSON文件时�
 > test.pkvpm
 
 ```yaml
-str: name: John Doe
-str: gender: Male
-bool: public: true
-int: age: 30
-list: favorite_books: The Great Gatsby|[str], 1984|[str], Brave New World|[str]
+[str]: name: John Doe
+[str]: gender: Male
+[bool]: public: True
+[int]: age: 30
+[list]: favorite_books: The Great Gatsby|[str], To Kill a Mockingbird|[str], Brave New World|[str]
 ```
 
 在这个例子中：
@@ -132,11 +132,11 @@ print(f"YAML to PKVPM:\n{yaml_to_pkvpm_content}")
 > 输出
 
 ```yaml
-str: name: John Doe
-str: gender: Male
-bool: public: true
-int: age: 30
-list: favorite_books: The Great Gatsby|[str], 1984|[str], Brave New World|[str]
+[str]: name: John Doe
+[str]: gender: Male
+[bool]: public: True
+[int]: age: 30
+[list]: favorite_books: The Great Gatsby|[str], To Kill a Mockingbird|[str], Brave New World|[str]
 ```
 
 4. 将PKVPM格式数据转换为JSON格式

@@ -229,6 +229,10 @@ if __name__ == "__main__":
     yaml_to_pkvpm_content = parser.parse(test_yml_content)
     print(f"YAML to PKVPM:\n{yaml_to_pkvpm_content}")
 
+    # 保存PKVPM格式数据/Save PKVPM format data
+    with open(test_pkv_path, 'w', encoding='utf-8') as file:
+        file.write(yaml_to_pkvpm_content)
+
     # 将PKVPM格式数据转换为YAML格式/Convert PKVPM format data to YAML format
     pkvpm_to_yaml_content = parser.to_yaml(yaml_to_pkvpm_content, test_yml_path)
     print(f"PKVPM to YAML:\n{pkvpm_to_yaml_content}")
