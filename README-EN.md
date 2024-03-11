@@ -45,7 +45,7 @@ When defining data using the PKVPM format, certain rules and structures need to 
 
 ### Basic Rules
 
-1. **Data Type Declaration**: Each data entry needs to declare the data type at the beginning (before the first colon). Supported data types include`str` (string),`int` (integer),`float` (floating-point number),`bool` (boolean value), and`list` (list). The type declaration is followed by a colon.
+1. **Data type declaration**: At the beginning of each piece of data (before the first colon), use the format `[Type]` to declare the type of data that needs to be declared. Supported data types include `str` (string), `int` (integer), `float` (floating point number), `bool` (boolean value) and `list` (list). The type declaration is followed by a colon.
 2. **Key-Value Pairs**: Data is represented in key-value pairs, where keys and values are separated by a colon (before the second colon). Keys are typically strings representing the name or identifier of the data.
 3. **Path Representation**: For nested data structures, use dots (`.`) to separate each level, forming a path. This notation allows direct access to deep data within nested structures.
 
