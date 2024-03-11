@@ -87,8 +87,8 @@ from pkvpm.parser import Parser
 
 parser = Parser()
 
-# 示例使用，读取测试需要的一共3个文件（test.yml, test.json, test.pkvpm）
-# An example of using the test requires a total of 3 files (test.yml, test.json, test.pkvpm)
+# 示例使用，读取测试需要的一共3个文件（test.yml, test.json, test.pkv）
+# An example of using the test requires a total of 3 files (test.yml, test.json, test.pkv)
 test_yml_path = os.path.join(os.path.dirname(__file__), 'test.yml')
 test_json_path = os.path.join(os.path.dirname(__file__), 'test.json')
 test_pkv_path = os.path.join(os.path.dirname(__file__), 'test.pkvpm')
@@ -98,7 +98,7 @@ test_pkv_path = os.path.join(os.path.dirname(__file__), 'test.pkvpm')
 
 ```python
 # 读取PKV文件/Read PKV file
-with open(r"./test.pkvpm", 'r', encoding='utf-8') as file:
+with open(r"./test.pkv", 'r', encoding='utf-8') as file:
     test_pkvpm_content = file.read()
 # 将PKVPM格式数据转换为YAML格式/Convert PKVPM format data to YAML format
 pkvpm_to_yaml_content = parser.to_yaml(test_pkvpm_content, test_yml_path)
