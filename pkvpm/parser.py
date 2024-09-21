@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
-@Description:PKVPM Parser library for converting between YAML, JSON, and PKVPM formats.
-@Date: 2024/03/10
-@version: 1.0.1
+@Description: PKVPM Parser library for converting between YAML, JSON, and PKVPM formats.
+@Date: 2024/09/21
+@version: 1.0.2
 @License: MIT License
 @Github: https://github.com/PKVPM/PKVPM
 
@@ -14,124 +14,76 @@ https://github.com/Johnserf-Seed
 
 import json
 import yaml
-
+import re
+import os
+from datetime import date, datetime
 from typing import Dict, Union
 
 
 class Parser:
 
     def __init__(self):
-        # 初始化数据/Initialize data
+        # 初始化数据
         self.data = {}
-        # 类型转换器/Type converter
+        # 类型转换器
         self.type_converters = {
-            "list": self.translate_list,
-            "bool": lambda x: x.lower() == "true",
-            "int": int,
-            "float": float,
-            "str": str,
+            "list": json.loads,
+            "bool": json.loads,
+            "int": json.loads,
+            "float": json.loads,
+            "str": json.loads,
+            "date": self.parse_date,
+            "NoneType": lambda x: None,
         }
 
-    def linear_format_generator(self, kv_data, prefix=""):
+    def flatten(self, data, parent_key='', sep='.'):
         """
-        将键值数据转换为线性格式的键值对列表/Convert key-value data to a linear format list of key-value pairs
-        :param kv_data: 键值对数据/Key-value pair data
-        :param prefix: 键的前缀/Prefix of the key
-        :return: 线性格式的键值对列表/Linear format list of key-value pairs
+        将嵌套的字典和列表展平成键值对列表
         """
-        if isinstance(kv_data, dict):
-            for key, value in kv_data.items():
-                if isinstance(value, list):
-                    # 如果值是列表，则将其转换为逗号分隔的字符串，并记录每个值的类型
-                    # If the value is a list, convert it to a comma-separated string and record the type of each value
-                    value_with_types = ", ".join(
-                        f"{item}|[{type(item).__name__}]" for item in value
-                    )
-                    yield f"{prefix}.{key}" if prefix else key, value_with_types, list
-                else:
-                    yield from self.linear_format_generator(
-                        value, prefix=f"{prefix}.{key}" if prefix else key
-                    )
-        elif isinstance(kv_data, list):
-            for index, value in enumerate(kv_data):
-                yield from self.linear_format_generator(
-                    value, prefix=f"{prefix}[{index}]"
-                )
+        items = []
+        if isinstance(data, dict):
+            for k, v in data.items():
+                new_key = f"{parent_key}{sep}{k}" if parent_key else str(k)
+                items.extend(self.flatten(v, new_key, sep=sep))
+        elif isinstance(data, list):
+            for i, v in enumerate(data):
+                new_key = f"{parent_key}[{i}]" if parent_key else f"[{i}]"
+                items.extend(self.flatten(v, new_key, sep=sep))
         else:
-            yield prefix, kv_data, type(kv_data).__name__
+            # 获取数据类型的名称
+            value_type = type(data).__name__
+            items.append((parent_key, data, value_type))
+        return items
 
     def parse(self, content: Union[str, Dict]) -> str:
         """
-        将输入数据转换为多态键值路径映射格式/Convert input data to polymorphic key-value path mapping format
-        :param content: 输入数据(字符串或字典)/Input data (string or dictionary)
-        :return: 多态键值路径映射格式(PKVPM)数据字符串/Polytypic key-value path mapping (PKVPM) data string
+        将输入数据转换为多态键值路径映射格式
+        :param content: 输入数据(字符串或字典)
+        :return: PKVPM 数据字符串
         """
-
-        # 如果是字符串就假设输入为YAML文本并转换为字典对象，如果是字典就直接使用无需转换。
-        # If it is a string, it is assumed that the input is YAML text and converted to a dictionary object, and if it is a dictionary, it is used directly without conversion.
+        # 如果是字符串，假设输入为 YAML 文本并转换为字典对象
         content = yaml.safe_load(content) if isinstance(content, str) else content
 
-        # 转换为线性格式/Convert to linear format
-        linear_format = list(self.linear_format_generator(content))
+        # 展平数据
+        linear_format = self.flatten(content)
 
-        # 保存线性格式数据/Save linear format data
+        # 构建输出行
         line_list = []
         for path, value, value_type in linear_format:
-            # 如果值的类型是列表，不进行转换，直接保存
-            # If the value type is a list, do not convert, save directly
-            if value_type == list:
-                line = f"[{value_type.__name__}]: {path}: {value}"
+            # 处理特殊类型
+            if isinstance(value, (date, datetime)):
+                value_serialized = json.dumps(value.isoformat())
+                value_type = 'date'
+            elif value is None:
+                value_serialized = 'null'
+                value_type = 'NoneType'
             else:
-                line = f"[{value_type}]: {path}: {value}"
+                value_serialized = json.dumps(value, ensure_ascii=False)
+            line = f"[{value_type}]: {path}: {value_serialized}"
             line_list.append(line)
 
         result = "\n".join(line_list)
-
-        # 返回线性格式数据/Return linear format data
         return result
-
-    def translate_list(self, value):
-        """
-        将列表字符串转换为列表，并保留每个元素的类型/Convert list string to list and retain the type of each element
-        :param value: 列表字符串/List string
-        例如/Example：1|[int], 2.2|[float], true|[bool]
-        """
-        items = [
-            item.split("|[") for item in value.split(", ") if item.strip()
-        ]  # 跳过空字符串的元素
-        result = []
-        for item in items:
-            if isinstance(item, list) and len(item) == 2:
-                item_value, item_type = item
-                if item_type == "int]":
-                    result.append(int(item_value))
-                elif item_type == "float]":
-                    result.append(float(item_value))
-                elif item_type == "bool]":
-                    result.append(item_value.lower() == "true")
-                else:
-                    result.append(item_value)
-            else:
-                result.append(item)  # 不是列表类型或者不带类型信息的项目，直接添加值
-        return result
-
-    def add_translation(self, path, value, value_type, data=None):
-        """添加翻译
-        :param path: 路径
-        :param value: 值
-        :param value_type: 值类型
-        :param data: 数据字典
-        """
-        keys = path.split(".")
-        current_dict = self.data if data is None else data
-        for key in keys[:-1]:
-            if key not in current_dict:
-                current_dict[key] = {}
-            current_dict = current_dict[key]
-
-        # 使用类型转换器转换值
-        converter = self.type_converters.get(value_type, lambda x: x)
-        current_dict[keys[-1]] = converter(value)
 
     def process_translation_line(self, line):
         """处理翻译行
@@ -139,25 +91,107 @@ class Parser:
         :return: 路径、值、值类型
         """
         line = line.strip()
-        parts = line.split(": ")  # 保留空格
-        value_type = parts[0][1:-1]
-        path = parts[1].rstrip(
-            ":"
-        )  # 去除末尾的冒号 因为parts保留空格导致获取的路径包含:
-        value = ": ".join(parts[2:])
+        # 先匹配类型
+        if not line.startswith('['):
+            raise ValueError(f"Invalid line format: {line}")
+        type_end = line.find(']: ')
+        if type_end == -1:
+            raise ValueError(f"Invalid line format: {line}")
+        value_type = line[1:type_end]
+        rest = line[type_end + 3:]
+        # 找到最后一个 ': '，以此分隔路径和值
+        split_index = rest.rfind(': ')
+        if split_index == -1:
+            raise ValueError(f"Invalid line format: {line}")
+        path = rest[:split_index]
+        value = rest[split_index + 2:]
+        return path, value, value_type
 
-        return (
-            path,
-            value,
-            value_type,
-        )
+    def set_value(self, data_dict, path, value):
+        """根据路径在嵌套字典中设置值
+        :param data_dict: 数据字典
+        :param path: 路径字符串
+        :param value: 要设置的值
+        """
+        keys = re.findall(r'[^.\[\]]+|\[\d+\]', path)
+        current = data_dict
+        for i, key in enumerate(keys):
+            if key.startswith('[') and key.endswith(']'):
+                # 处理列表索引
+                index = int(key[1:-1])
+                if not isinstance(current, list):
+                    current = []
+                while len(current) <= index:
+                    current.append({})
+                if i == len(keys) - 1:
+                    # 最后一个键，设置值
+                    current[index] = value
+                else:
+                    current = current[index]
+            else:
+                if i == len(keys) - 1:
+                    # 最后一个键，设置值
+                    current[key] = value
+                else:
+                    next_key = keys[i + 1] if i + 1 < len(keys) else None
+                    if next_key and next_key.startswith('['):
+                        # 下一个键是列表索引，current[key] 应该是列表
+                        if key not in current or not isinstance(current[key], list):
+                            current[key] = []
+                    else:
+                        # 下一个键不是列表索引，current[key] 应该是字典
+                        if key not in current or not isinstance(current[key], dict):
+                            current[key] = {}
+                    current = current[key]
+
+    def translate_list(self, value):
+        """
+        将字符串解析为列表，支持嵌套列表和字典
+        :param value: 列表字符串，应该是 JSON 格式的字符串
+        :return: 解析后的列表对象
+        """
+        # 使用 json.loads 解析列表字符串
+        return json.loads(value)
+
+    def parse_date(self, value):
+        """
+        将日期字符串解析为 datetime.date 对象
+        :param value: 日期字符串
+        :return: datetime.date 对象
+        """
+        date_str = json.loads(value)
+        try:
+            return datetime.strptime(date_str, '%Y-%m-%d').date()
+        except ValueError:
+            # 如果解析失败，返回原始字符串
+            return date_str
+
+    def add_translation(self, path, value, value_type, data=None):
+        """添加翻译
+        :param path: 路径
+        :param value: 值（已序列化）
+        :param value_type: 值类型
+        :param data: 数据字典
+        """
+        if data is None:
+            data = self.data
+        # 获取对应的类型转换器
+        converter = self.type_converters.get(value_type, lambda x: x)
+        # 反序列化值
+        value_deserialized = converter(value)
+        # 设置值
+        self.set_value(data, path, value_deserialized)
 
     def to_json(self, pkvpm_str, file_path=None):
         """
-        将数据转换为 JSON 格式
+        将 PKVPM 数据字符串转换为 JSON 格式
+        :param pkvpm_str: PKVPM 数据字符串
+        :param file_path: 输出的 JSON 文件路径
+        :return: JSON 格式的数据
         """
-        yaml_data = self.to_yaml(pkvpm_str, file_path=file_path)
-        json_data = json.dumps(yaml.safe_load(yaml_data), ensure_ascii=False, indent=4)
+        yaml_data = self.to_yaml(pkvpm_str)
+        data = yaml.safe_load(yaml_data)
+        json_data = json.dumps(data, ensure_ascii=False, indent=4, default=str)
 
         if file_path:
             with open(file_path, "w", encoding="utf-8") as file:
@@ -168,79 +202,67 @@ class Parser:
     def to_yaml(self, data=None, file_path=None):
         """
         将数据转换为 YAML 格式
-        :param data: PKVPM格式数据，如果为None则使用初始化的数据
-        :param file_path: 输出的YAML文件路径
-        :return: YAML格式数据
+        :param data: PKVPM 格式数据，如果为 None 则使用初始化的数据
+        :param file_path: 输出的 YAML 文件路径
+        :return: YAML 格式数据
         """
         if data:
             # 创建一个新的空字典来存储解析后的数据
             new_data = {}
             for line in data.split('\n'):
-                if line:
+                if line.strip():
                     path, value, value_type = self.process_translation_line(line)
                     self.add_translation(path, value, value_type, new_data)
             data = new_data
         else:
             data = self.data
 
+        yaml_data = yaml.dump(data, sort_keys=False, indent=4, allow_unicode=True, default_flow_style=False)
+
         if file_path:
             with open(file_path, "w", encoding="utf-8") as file:
-                yaml.dump(data, file, sort_keys=False, indent=4, allow_unicode=True)
+                file.write(yaml_data)
 
-        return yaml.dump(data, sort_keys=False, indent=4, allow_unicode=True)
+        return yaml_data
 
 
 if __name__ == "__main__":
 
-    # 一个pkvpm文件的例子:
-    # [str]: key1: value1
-    # [list]: key2: value2 | [str], value3 | [str], value4 | [str]
-    # [int]: key3: 123
-    # [float]: key4: 123.456
-    # [bool]: key5: true
-    # [list]: key6: 1 | [int], 2 | [int], 3 | [int]
-    # [list]: key7: 1.1 | [float], 2.2 | [float], 3.3 | [float]
-    # [list]: key8: true | [bool], false | [bool], true | [bool]
-    # [list]: key9: 1 | [int], 2.2 | [float], true | [bool]
-    # [str]: path1.path2.path3: value1
-
-    import os
-
     parser = Parser()
 
-    # 示例使用，读取测试需要的一共3个文件（test.yml, test.json, test.pkv）
+    # 示例使用，读取测试需要的 3 个文件（test.yml, test.json, test.pkv）
     test_yml_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.yml')
     test_json_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.json')
     test_pkv_path = os.path.join(os.path.dirname(__file__), '..', 'tests', 'test.pkv')
 
-    # 读取YAML文件/Read YAML file
+    # 读取 YAML 文件
     with open(test_yml_path, 'r', encoding='utf-8') as file:
         test_yml_content = file.read()
 
-    # 读取JSON文件/Read JSON file
+    # 读取 JSON 文件
     with open(test_json_path, 'r', encoding='utf-8') as file:
         test_json_content = file.read()
 
-    # 读取PKV文件/Read PKV file
+    # 读取 PKV 文件
     with open(test_pkv_path, 'r', encoding='utf-8') as file:
         test_pkvpm_content = file.read()
 
-    # 将YAML数据转换为PKVPM格式
+    # 将 YAML 数据转换为 PKVPM 格式
     yaml_to_pkvpm_content = parser.parse(test_yml_content)
     print(f"YAML to PKVPM:\n{yaml_to_pkvpm_content}")
 
-    # 保存PKVPM格式数据/Save PKVPM format data
+    # 保存 PKVPM 格式数据
     with open(test_pkv_path, 'w', encoding='utf-8') as file:
         file.write(yaml_to_pkvpm_content)
 
-    # 将PKVPM格式数据转换为YAML格式/Convert PKVPM format data to YAML format
+    # 将 PKVPM 格式数据转换为 YAML 格式
     pkvpm_to_yaml_content = parser.to_yaml(yaml_to_pkvpm_content, test_yml_path)
     print(f"PKVPM to YAML:\n{pkvpm_to_yaml_content}")
 
-    # 将PKVPM格式数据转换为JSON格式
+    # 将 PKVPM 格式数据转换为 JSON 格式
     pkvpm_to_json_content = parser.to_json(yaml_to_pkvpm_content, test_json_path)
     print(f"PKVPM to JSON:\n{pkvpm_to_json_content}")
 
-    # 将JSON数据转换为PKVPM格式
+    # 将 JSON 数据转换为 PKVPM 格式
     json_to_pkvpm_content = parser.parse(pkvpm_to_json_content)
     print(f"JSON to PKVPM:\n{json_to_pkvpm_content}")

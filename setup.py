@@ -13,7 +13,7 @@ with open("README-EN.md", "r", encoding='utf8') as fh:
 
 setup(
     name='pkvpm',
-    version='1.0.1',
+    version='1.0.3',
     author='PKVPM Organization',
     author_email='PKVPM@PKVPM.ORG',
     packages=find_packages(),

@@ -1,5 +1,7 @@
-[str]: name: John Doe
-[str]: gender: Male
-[bool]: public: True
+[str]: name: "John Doe"
+[str]: gender: "Male"
+[bool]: public: true
 [int]: age: 30
-[list]: favorite_books: The Great Gatsby|[str], To Kill a Mockingbird|[str], Brave New World|[str]
+[str]: favorite_books[0]: "The Great Gatsby"
+[str]: favorite_books[1]: "To Kill a Mockingbird"
+[str]: favorite_books[2]: "Brave New World"
